@@ -254,6 +254,10 @@
             scroll-margin-top: 140px;
         }
 
+        .recommendation-section {
+            scroll-margin-top: 65px;
+        }
+
         .section-header {
             text-align: center;
             margin-bottom: 4rem;
@@ -907,6 +911,126 @@
             font-size: 0.95rem;
         }
 
+        /* Recommendation Section */
+        .recommendation-section {
+            background: linear-gradient(135deg, #f8fafc 0%, #e0e7ff 100%);
+            padding: 6rem 2rem;
+        }
+
+        .recommendation-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .recommendation-card {
+            background: white;
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 4px 6px -1px var(--shadow);
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .recommendation-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+        }
+
+        .recommendation-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+            border-color: var(--primary);
+        }
+
+        .recommendation-card.active {
+            border-color: var(--primary);
+            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.3);
+        }
+
+        .recommendation-badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .recommendation-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--text);
+        }
+
+        .recommendation-subtitle {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+        }
+
+        .recommendation-description {
+            font-size: 0.95rem;
+            color: var(--text);
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .recommendation-codes {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .recommendation-code {
+            padding: 0.25rem 0.75rem;
+            background: var(--bg-secondary);
+            color: var(--primary);
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 0.85rem;
+        }
+
+        .apply-button {
+            width: 100%;
+            padding: 0.75rem 1.5rem;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Pretendard', sans-serif;
+            font-size: 0.95rem;
+        }
+
+        .apply-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.4);
+        }
+
+        .apply-button:active {
+            transform: translateY(0);
+        }
+
+        .recommendation-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
         /* Footer */
         footer {
             background: var(--text);
@@ -990,6 +1114,18 @@
             .nav-links a.active {
                 background: rgba(99, 102, 241, 0.1);
                 border-left: 3px solid var(--primary);
+            }
+
+            .recommendation-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .recommendation-title {
+                font-size: 1.25rem;
+            }
+
+            .recommendation-icon {
+                font-size: 1.5rem;
             }
 
             .options-grid {
@@ -1088,6 +1224,7 @@
             <div class="nav-brand">🎨 포트폴리오 디자인 선택</div>
             <ul class="nav-links" id="nav-links">
                 <li><a href="#home" class="nav-link active">홈</a></li>
+                <li><a href="#recommendations" class="nav-link">추천 조합</a></li>
                 <li><a href="#layout" class="nav-link">레이아웃</a></li>
                 <li><a href="#color" class="nav-link">색상</a></li>
                 <li><a href="#interaction" class="nav-link">인터랙션</a></li>
@@ -1140,7 +1277,167 @@
                 </div>
             </div>
 
-            <a href="#layout" class="cta-button">시작하기 →</a>
+            <a href="#recommendations" class="cta-button">시작하기 →</a>
+        </div>
+    </section>
+
+    <!-- Recommendations Section -->
+    <section class="recommendation-section" id="recommendations">
+        <div class="container">
+            <div class="section-header">
+                <h2>💡 추천 조합</h2>
+                <p>어떤 스타일을 선택할지 고민된다면? 검증된 조합을 먼저 시도해보세요!</p>
+            </div>
+
+            <div class="recommendation-grid">
+                <!-- Recommendation 1 -->
+                <div class="recommendation-card">
+                    <div class="recommendation-icon">🎯</div>
+                    <div class="recommendation-badge">베스트</div>
+                    <h3 class="recommendation-title">미니멀리스트 프로</h3>
+                    <p class="recommendation-subtitle">그래픽 디자이너, 아트 디렉터</p>
+                    <p class="recommendation-description">절제되고 전문적인 분위기로 작품을 돋보이게 합니다</p>
+                    <div class="recommendation-codes">
+                        <span class="recommendation-code">A1</span>
+                        <span class="recommendation-code">B1</span>
+                        <span class="recommendation-code">C1</span>
+                    </div>
+                    <button class="apply-button" onclick="applyRecommendation('A1', 'B1', 'C1')">이 조합 적용하기</button>
+                </div>
+
+                <!-- Recommendation 2 -->
+                <div class="recommendation-card">
+                    <div class="recommendation-icon">🎨</div>
+                    <div class="recommendation-badge">인기</div>
+                    <h3 class="recommendation-title">크리에이티브 엔진</h3>
+                    <p class="recommendation-subtitle">일러스트레이터, 그래픽 디자이너</p>
+                    <p class="recommendation-description">창의적이고 에너제틱한 느낌으로 개성을 표현합니다</p>
+                    <div class="recommendation-codes">
+                        <span class="recommendation-code">A5</span>
+                        <span class="recommendation-code">B2</span>
+                        <span class="recommendation-code">C3</span>
+                    </div>
+                    <button class="apply-button" onclick="applyRecommendation('A5', 'B2', 'C3')">이 조합 적용하기</button>
+                </div>
+
+                <!-- Recommendation 3 -->
+                <div class="recommendation-card">
+                    <div class="recommendation-icon">🚀</div>
+                    <div class="recommendation-badge">트렌디</div>
+                    <h3 class="recommendation-title">다크 테크</h3>
+                    <p class="recommendation-subtitle">UI/UX 디자이너, 인터랙션 디자이너</p>
+                    <p class="recommendation-description">미래적이고 기술적인 분위기로 강한 인상을 남깁니다</p>
+                    <div class="recommendation-codes">
+                        <span class="recommendation-code">A6</span>
+                        <span class="recommendation-code">B6</span>
+                        <span class="recommendation-code">C5</span>
+                    </div>
+                    <button class="apply-button" onclick="applyRecommendation('A6', 'B6', 'C5')">이 조합 적용하기</button>
+                </div>
+
+                <!-- Recommendation 4 -->
+                <div class="recommendation-card">
+                    <div class="recommendation-icon">✨</div>
+                    <h3 class="recommendation-title">엘레강트 스토리텔러</h3>
+                    <p class="recommendation-subtitle">브랜드 디자이너, 경험 디자이너</p>
+                    <p class="recommendation-description">고급스럽고 서사적인 분위기로 스토리를 전달합니다</p>
+                    <div class="recommendation-codes">
+                        <span class="recommendation-code">A4</span>
+                        <span class="recommendation-code">B4</span>
+                        <span class="recommendation-code">C4</span>
+                    </div>
+                    <button class="apply-button" onclick="applyRecommendation('A4', 'B4', 'C4')">이 조합 적용하기</button>
+                </div>
+
+                <!-- Recommendation 5 -->
+                <div class="recommendation-card">
+                    <div class="recommendation-icon">🌿</div>
+                    <h3 class="recommendation-title">프레시 그린</h3>
+                    <p class="recommendation-subtitle">친환경 디자인, 제품 디자이너</p>
+                    <p class="recommendation-description">자연스럽고 따뜻한 분위기로 친근감을 줍니다</p>
+                    <div class="recommendation-codes">
+                        <span class="recommendation-code">A3</span>
+                        <span class="recommendation-code">B7</span>
+                        <span class="recommendation-code">C6</span>
+                    </div>
+                    <button class="apply-button" onclick="applyRecommendation('A3', 'B7', 'C6')">이 조합 적용하기</button>
+                </div>
+
+                <!-- Recommendation 6 -->
+                <div class="recommendation-card">
+                    <div class="recommendation-icon">💼</div>
+                    <div class="recommendation-badge">추천</div>
+                    <h3 class="recommendation-title">프로페셔널 포트폴리오</h3>
+                    <p class="recommendation-subtitle">모든 디자인 분야</p>
+                    <p class="recommendation-description">신뢰감 있고 전문적인 분위기로 안정적입니다</p>
+                    <div class="recommendation-codes">
+                        <span class="recommendation-code">A7</span>
+                        <span class="recommendation-code">B8</span>
+                        <span class="recommendation-code">C9</span>
+                    </div>
+                    <button class="apply-button" onclick="applyRecommendation('A7', 'B8', 'C9')">이 조합 적용하기</button>
+                </div>
+
+                <!-- Recommendation 7 -->
+                <div class="recommendation-card">
+                    <div class="recommendation-icon">📸</div>
+                    <h3 class="recommendation-title">아티스트 갤러리</h3>
+                    <p class="recommendation-subtitle">사진작가, 파인아트</p>
+                    <p class="recommendation-description">작품이 돋보이는 강렬한 흑백 대비</p>
+                    <div class="recommendation-codes">
+                        <span class="recommendation-code">A10</span>
+                        <span class="recommendation-code">B10</span>
+                        <span class="recommendation-code">C7</span>
+                    </div>
+                    <button class="apply-button" onclick="applyRecommendation('A10', 'B10', 'C7')">이 조합 적용하기</button>
+                </div>
+
+                <!-- Recommendation 8 -->
+                <div class="recommendation-card">
+                    <div class="recommendation-icon">💭</div>
+                    <h3 class="recommendation-title">소프트 드리머</h3>
+                    <p class="recommendation-subtitle">일러스트레이터, 애니메이터</p>
+                    <p class="recommendation-description">부드럽고 꿈같은 파스텔 분위기</p>
+                    <div class="recommendation-codes">
+                        <span class="recommendation-code">A2</span>
+                        <span class="recommendation-code">B3</span>
+                        <span class="recommendation-code">C8</span>
+                    </div>
+                    <button class="apply-button" onclick="applyRecommendation('A2', 'B3', 'C8')">이 조합 적용하기</button>
+                </div>
+
+                <!-- Recommendation 9 -->
+                <div class="recommendation-card">
+                    <div class="recommendation-icon">🎪</div>
+                    <h3 class="recommendation-title">레트로 빈티지</h3>
+                    <p class="recommendation-subtitle">브랜딩, 패키지 디자이너</p>
+                    <p class="recommendation-description">재미있고 독특한 복고풍 감성</p>
+                    <div class="recommendation-codes">
+                        <span class="recommendation-code">A9</span>
+                        <span class="recommendation-code">B9</span>
+                        <span class="recommendation-code">C10</span>
+                    </div>
+                    <button class="apply-button" onclick="applyRecommendation('A9', 'B9', 'C10')">이 조합 적용하기</button>
+                </div>
+
+                <!-- Recommendation 10 -->
+                <div class="recommendation-card">
+                    <div class="recommendation-icon">⚡</div>
+                    <h3 class="recommendation-title">하이퍼 모던</h3>
+                    <p class="recommendation-subtitle">디지털 디자이너, 인터랙션</p>
+                    <p class="recommendation-description">실험적이고 트렌디한 최신 스타일</p>
+                    <div class="recommendation-codes">
+                        <span class="recommendation-code">A8</span>
+                        <span class="recommendation-code">B5</span>
+                        <span class="recommendation-code">C2</span>
+                    </div>
+                    <button class="apply-button" onclick="applyRecommendation('A8', 'B5', 'C2')">이 조합 적용하기</button>
+                </div>
+            </div>
+
+            <div class="info-alert" style="margin-top: 3rem;">
+                <p><strong>💡 Tip:</strong> 추천 조합을 적용하면 자동으로 모든 옵션이 선택됩니다. 이후 원하는 부분만 개별적으로 변경할 수도 있어요!</p>
+            </div>
         </div>
     </section>
 
@@ -1582,7 +1879,7 @@
         
         // Update active navigation based on scroll position
         function updateActiveNav() {
-            const sections = ['home', 'layout', 'color', 'interaction', 'prompt-section'];
+            const sections = ['home', 'recommendations', 'layout', 'color', 'interaction', 'prompt-section'];
             const navLinks = document.querySelectorAll('.nav-link');
             
             let currentSection = '';
@@ -1605,6 +1902,43 @@
                     link.classList.add('active');
                 }
             });
+        }
+
+        // Apply recommendation
+        function applyRecommendation(layoutCode, colorCode, interactionCode) {
+            // Apply selections
+            selectOption('layout', layoutCode);
+            selectOption('color', colorCode);
+            selectOption('interaction', interactionCode);
+            
+            // Visual feedback on card
+            const cards = document.querySelectorAll('.recommendation-card');
+            cards.forEach(card => card.classList.remove('active'));
+            
+            // Find and highlight the clicked card
+            const clickedButton = event.target;
+            const card = clickedButton.closest('.recommendation-card');
+            if (card) {
+                card.classList.add('active');
+            }
+            
+            // Button feedback
+            const originalText = clickedButton.textContent;
+            clickedButton.textContent = '✅ 적용 완료!';
+            clickedButton.style.background = 'linear-gradient(135deg, #10b981 0%, #059669 100%)';
+            
+            setTimeout(() => {
+                clickedButton.textContent = originalText;
+                clickedButton.style.background = '';
+            }, 2000);
+            
+            // Smooth scroll to prompt section
+            setTimeout(() => {
+                document.getElementById('prompt-section').scrollIntoView({ 
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }, 500);
         }
 
         // Render options
