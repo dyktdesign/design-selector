@@ -372,6 +372,348 @@
             margin-top: 0.75rem;
         }
 
+        /* Preview Button */
+        .preview-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 1rem;
+            transition: all 0.3s ease;
+            font-family: 'Pretendard', sans-serif;
+        }
+
+        .preview-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.4);
+        }
+
+        /* Layout Preview Icon */
+        .layout-preview {
+            width: 100%;
+            height: 120px;
+            background: var(--bg-secondary);
+            border-radius: 8px;
+            margin-top: 1rem;
+            padding: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .layout-preview svg {
+            width: 100%;
+            height: 100%;
+            max-width: 200px;
+        }
+
+        /* Interaction Preview */
+        .interaction-preview {
+            width: 100px;
+            height: 100px;
+            background: var(--bg-secondary);
+            border-radius: 8px;
+            margin-top: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .interaction-demo {
+            width: 60px;
+            height: 60px;
+            background: var(--primary);
+            border-radius: 8px;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(5px);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 20px;
+            max-width: 900px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            animation: slideUp 0.3s ease;
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .modal-header {
+            padding: 2rem;
+            border-bottom: 2px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .modal-title {
+            flex: 1;
+        }
+
+        .modal-title h3 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+
+        .modal-title .subtitle {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+        }
+
+        .modal-close {
+            width: 40px;
+            height: 40px;
+            border: none;
+            background: var(--bg-secondary);
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: var(--text);
+            transition: all 0.3s ease;
+        }
+
+        .modal-close:hover {
+            background: var(--primary);
+            color: white;
+            transform: rotate(90deg);
+        }
+
+        .modal-body {
+            padding: 2rem;
+        }
+
+        .modal-preview-area {
+            background: var(--bg-secondary);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 300px;
+        }
+
+        .modal-description {
+            font-size: 1.125rem;
+            line-height: 1.8;
+            color: var(--text);
+            margin-bottom: 1.5rem;
+        }
+
+        .modal-features {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.05) 0%, rgba(79, 70, 229, 0.05) 100%);
+            border-radius: 12px;
+            padding: 1.5rem;
+        }
+
+        .modal-features h4 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .modal-features ul {
+            list-style: none;
+            display: grid;
+            gap: 0.75rem;
+        }
+
+        .modal-features li {
+            padding-left: 2rem;
+            position: relative;
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        .modal-features li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            width: 24px;
+            height: 24px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.875rem;
+        }
+
+        /* Layout Wireframes */
+        .wireframe {
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .wireframe rect, .wireframe line {
+            stroke: var(--border);
+            fill: none;
+            stroke-width: 2;
+        }
+
+        .wireframe .fill {
+            fill: var(--bg-secondary);
+        }
+
+        .wireframe .highlight {
+            fill: rgba(99, 102, 241, 0.2);
+            stroke: var(--primary);
+        }
+
+        /* Interaction Demo Animations */
+        .demo-minimal-subtle {
+            animation: subtleHover 2s ease-in-out infinite;
+        }
+
+        @keyframes subtleHover {
+            0%, 100% { transform: translateY(0); opacity: 1; }
+            50% { transform: translateY(-5px); opacity: 0.8; }
+        }
+
+        .demo-dynamic {
+            animation: dynamicMove 1s cubic-bezier(0.68, -0.55, 0.265, 1.55) infinite;
+        }
+
+        @keyframes dynamicMove {
+            0%, 100% { transform: scale(1) rotate(0deg); }
+            50% { transform: scale(1.2) rotate(10deg); }
+        }
+
+        .demo-playful {
+            animation: bounce 1.5s ease-in-out infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            25% { transform: translateY(-15px); }
+            50% { transform: translateY(0); }
+            75% { transform: translateY(-8px); }
+        }
+
+        .demo-elegant-flow {
+            animation: elegantFlow 3s ease-in-out infinite;
+        }
+
+        @keyframes elegantFlow {
+            0%, 100% { transform: translateX(0); opacity: 1; }
+            50% { transform: translateX(20px); opacity: 0.6; }
+        }
+
+        .demo-glitch {
+            animation: glitch 2s steps(5) infinite;
+        }
+
+        @keyframes glitch {
+            0%, 100% { transform: translate(0); }
+            20% { transform: translate(-2px, 2px); }
+            40% { transform: translate(2px, -2px); }
+            60% { transform: translate(-2px, -2px); }
+            80% { transform: translate(2px, 2px); }
+        }
+
+        .demo-organic {
+            animation: wave 2s ease-in-out infinite;
+        }
+
+        @keyframes wave {
+            0%, 100% { border-radius: 8px; transform: scale(1); }
+            50% { border-radius: 50%; transform: scale(1.1); }
+        }
+
+        .demo-bold {
+            animation: boldImpact 1.5s ease-in-out infinite;
+        }
+
+        @keyframes boldImpact {
+            0%, 100% { transform: scale(1); box-shadow: 0 0 0 rgba(99, 102, 241, 0); }
+            50% { transform: scale(1.3); box-shadow: 0 10px 30px rgba(99, 102, 241, 0.5); }
+        }
+
+        .demo-delicate {
+            animation: microMove 2s ease-in-out infinite;
+        }
+
+        @keyframes microMove {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(2deg); }
+            75% { transform: rotate(-2deg); }
+        }
+
+        .demo-modern {
+            animation: sleek 2s ease-in-out infinite;
+        }
+
+        @keyframes sleek {
+            0%, 100% { transform: scale(1); filter: blur(0px); }
+            50% { transform: scale(1.1); filter: blur(1px); }
+        }
+
+        .demo-retro {
+            animation: retroBounce 1s cubic-bezier(0.68, -0.55, 0.265, 1.55) infinite;
+        }
+
+        @keyframes retroBounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
         .color-preview {
             display: flex;
             gap: 0.5rem;
@@ -569,6 +911,35 @@
             .prompt-content {
                 font-size: 0.8rem;
             }
+
+            .modal {
+                padding: 1rem;
+            }
+
+            .modal-content {
+                border-radius: 16px;
+            }
+
+            .modal-header {
+                padding: 1.5rem;
+            }
+
+            .modal-title h3 {
+                font-size: 1.5rem;
+            }
+
+            .modal-body {
+                padding: 1.5rem;
+            }
+
+            .modal-preview-area {
+                min-height: 200px;
+                padding: 1rem;
+            }
+
+            .wireframe {
+                max-width: 250px;
+            }
         }
 
         /* Scrollbar */
@@ -729,6 +1100,24 @@
         <p style="margin-top: 0.5rem; font-size: 0.9rem;">© 2025 Portfolio Design Selector</p>
     </footer>
 
+    <!-- Modal -->
+    <div class="modal" id="preview-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-title">
+                    <h3 id="modal-title">Title</h3>
+                    <div class="subtitle" id="modal-subtitle">Subtitle</div>
+                </div>
+                <button class="modal-close" onclick="closeModal()">×</button>
+            </div>
+            <div class="modal-body">
+                <div class="modal-preview-area" id="modal-preview"></div>
+                <div class="modal-description" id="modal-description"></div>
+                <div class="modal-features" id="modal-features"></div>
+            </div>
+        </div>
+    </div>
+
     <script>
         // Data
         const layoutOptions = [
@@ -737,70 +1126,90 @@
                 title: '클래식 스크롤',
                 subtitle: 'Traditional Scroll',
                 description: '상하로 자연스럽게 흐르는 전통적 레이아웃. 섹션이 순차적으로 배치되며 초보자에게 가장 안전한 선택입니다.',
-                tag: '깔끔하고 정돈된'
+                tag: '깔끔하고 정돈된',
+                features: ['순차적 섹션 배치', '읽기 쉬운 흐름', '모든 디바이스 최적화', '직관적인 네비게이션'],
+                wireframe: 'classic'
             },
             {
                 code: 'A2',
                 title: '분할 스크린',
                 subtitle: 'Split Screen',
                 description: '화면을 좌우로 나눈 레이아웃. 왼쪽은 고정된 소개/네비게이션, 오른쪽은 스크롤 가능한 콘텐츠.',
-                tag: '비주얼 강조'
+                tag: '비주얼 강조',
+                features: ['좌측 고정 영역', '우측 스크롤 콘텐츠', '비주얼 집중', '독특한 구조'],
+                wireframe: 'split'
             },
             {
                 code: 'A3',
                 title: '카드 그리드',
                 subtitle: 'Card Grid',
                 description: '모든 섹션을 카드 형태로 배치. 깔끔하고 모듈화된 느낌으로 정보를 구획화하여 전달합니다.',
-                tag: '정보가 많은 경우'
+                tag: '정보가 많은 경우',
+                features: ['모듈형 카드 구조', '정보 구획화', '스캔 가능한 레이아웃', '유연한 배치'],
+                wireframe: 'card'
             },
             {
                 code: 'A4',
                 title: '타임라인',
                 subtitle: 'Timeline',
                 description: '시간 순서로 흐르는 스토리텔링 레이아웃. 경력/프로젝트를 시간순으로 표현하며 좌우로 번갈아 배치합니다.',
-                tag: '성장 과정 강조'
+                tag: '성장 과정 강조',
+                features: ['시간순 배치', '좌우 교차 레이아웃', '스토리텔링 강화', '경력 시각화'],
+                wireframe: 'timeline'
             },
             {
                 code: 'A5',
                 title: '매거진',
                 subtitle: 'Magazine',
                 description: '잡지처럼 비대칭적 그리드. 이미지와 텍스트가 자유롭게 배치되는 창의적이고 독특한 레이아웃입니다.',
-                tag: '크리에이티브'
+                tag: '크리에이티브',
+                features: ['비대칭 그리드', '자유로운 배치', '에디토리얼 느낌', '크리에이티브 표현'],
+                wireframe: 'magazine'
             },
             {
                 code: 'A6',
                 title: '풀스크린 슬라이드',
                 subtitle: 'Fullscreen Slides',
                 description: '각 섹션이 화면 전체를 차지. 스크롤시 섹션이 넘어가는 효과로 임팩트 있는 프레젠테이션 스타일입니다.',
-                tag: '강렬한 인상'
+                tag: '강렬한 인상',
+                features: ['전체 화면 섹션', '슬라이드 전환', '몰입감 극대화', '프레젠테이션 스타일'],
+                wireframe: 'fullscreen'
             },
             {
                 code: 'A7',
                 title: '사이드바 고정',
                 subtitle: 'Fixed Sidebar',
                 description: '왼쪽에 네비게이션 고정, 오른쪽에 콘텐츠 스크롤. 전문적이고 체계적인 느낌을 줍니다.',
-                tag: '많은 섹션'
+                tag: '많은 섹션',
+                features: ['고정 사이드바', '쉬운 네비게이션', '체계적 구조', '전문적 느낌'],
+                wireframe: 'sidebar'
             },
             {
                 code: 'A8',
                 title: '비대칭 레이아웃',
                 subtitle: 'Asymmetric',
                 description: '좌우가 불균형한 독특한 배치. 실험적이고 아방가르드한 느낌으로 시선을 끄는 레이아웃입니다.',
-                tag: '실험적 디자인'
+                tag: '실험적 디자인',
+                features: ['불균형 배치', '시선 집중', '실험적 디자인', '독창적 구조'],
+                wireframe: 'asymmetric'
             },
             {
                 code: 'A9',
                 title: '모듈러 블록',
                 subtitle: 'Modular Blocks',
                 description: '크기가 다른 블록들이 조합. 테트리스처럼 퍼즐 조각 같은 배치로 역동적이고 재미있는 구성입니다.',
-                tag: '플레이풀'
+                tag: '플레이풀',
+                features: ['다양한 블록 크기', '퍼즐 같은 배치', '역동적 구성', '플레이풀한 느낌'],
+                wireframe: 'modular'
             },
             {
                 code: 'A10',
                 title: '갤러리 중심',
                 subtitle: 'Gallery First',
                 description: '프로젝트 이미지가 첫 화면을 채움. 포트폴리오가 중심이며 비주얼이 강조된 구성입니다.',
-                tag: '작품 우선'
+                tag: '작품 우선',
+                features: ['비주얼 우선', '그리드 갤러리', '작품 중심', '이미지 강조'],
+                wireframe: 'gallery'
             }
         ];
 
@@ -894,7 +1303,9 @@
                 subtitle: 'Minimal Subtle',
                 description: '매우 절제된 애니메이션. 미묘한 호버 효과로 "말없이 우아하게" 표현합니다.',
                 speed: '0.5초',
-                tag: '우아함'
+                tag: '우아함',
+                features: ['부드러운 전환', '미묘한 움직임', '절제된 표현', '우아한 인터랙션'],
+                demoClass: 'demo-minimal-subtle'
             },
             {
                 code: 'C2',
@@ -902,7 +1313,9 @@
                 subtitle: 'Dynamic',
                 description: '활발한 움직임과 전환. 확대/축소, 회전 효과로 "에너지 넘치게" 표현합니다.',
                 speed: '0.2초',
-                tag: '에너지'
+                tag: '에너지',
+                features: ['빠른 전환', '확대/회전 효과', '역동적 움직임', '활발한 인터랙션'],
+                demoClass: 'demo-dynamic'
             },
             {
                 code: 'C3',
@@ -910,7 +1323,9 @@
                 subtitle: 'Playful',
                 description: '귀엽고 재미있는 애니메이션. 통통 튀고 흔들리는 효과로 "즐겁고 친근하게" 표현합니다.',
                 speed: '0.3초',
-                tag: '재미'
+                tag: '재미',
+                features: ['바운스 효과', '재미있는 움직임', '친근한 느낌', '플레이풀한 표현'],
+                demoClass: 'demo-playful'
             },
             {
                 code: 'C4',
@@ -918,7 +1333,9 @@
                 subtitle: 'Elegant Flow',
                 description: '부드럽게 흐르는 듯한 움직임. 페이드, 슬라이드 효과로 "우아하고 세련되게" 표현합니다.',
                 speed: '0.6초',
-                tag: '세련됨'
+                tag: '세련됨',
+                features: ['흐르는 전환', '페이드 효과', '우아한 움직임', '세련된 표현'],
+                demoClass: 'demo-elegant-flow'
             },
             {
                 code: 'C5',
@@ -926,7 +1343,9 @@
                 subtitle: 'Technical Glitch',
                 description: '깜빡임, 글리치 효과. 테크니컬한 전환으로 "미래적이고 기술적으로" 표현합니다.',
                 speed: '0.1초',
-                tag: '기술적'
+                tag: '기술적',
+                features: ['글리치 효과', '빠른 깜빡임', '테크니컬한 느낌', '미래적 표현'],
+                demoClass: 'demo-glitch'
             },
             {
                 code: 'C6',
@@ -934,7 +1353,9 @@
                 subtitle: 'Organic Natural',
                 description: '자연스러운 이징 곡선. 물결, 파동 효과로 "자연스럽고 부드럽게" 표현합니다.',
                 speed: '0.4초',
-                tag: '자연스러움'
+                tag: '자연스러움',
+                features: ['유기적 움직임', '파동 효과', '자연스러운 곡선', '부드러운 전환'],
+                demoClass: 'demo-organic'
             },
             {
                 code: 'C7',
@@ -942,7 +1363,9 @@
                 subtitle: 'Bold Impact',
                 description: '강렬한 시각적 효과. 크게 확대, 강한 그림자로 "대담하고 강렬하게" 표현합니다.',
                 speed: '0.25초',
-                tag: '강렬함'
+                tag: '강렬함',
+                features: ['강렬한 확대', '그림자 효과', '대담한 표현', '임팩트 있는 전환'],
+                demoClass: 'demo-bold'
             },
             {
                 code: 'C8',
@@ -950,7 +1373,9 @@
                 subtitle: 'Delicate Detail',
                 description: '세밀한 마이크로 인터랙션. 작은 요소들의 반응으로 "정교하고 섬세하게" 표현합니다.',
                 speed: '0.35초',
-                tag: '섬세함'
+                tag: '섬세함',
+                features: ['마이크로 인터랙션', '세밀한 반응', '정교한 움직임', '섬세한 표현'],
+                demoClass: 'demo-delicate'
             },
             {
                 code: 'C9',
@@ -958,7 +1383,9 @@
                 subtitle: 'Modern Sleek',
                 description: '매끄럽고 현대적인 전환. 블러, 스케일 효과로 "세련되고 현대적으로" 표현합니다.',
                 speed: '0.3초',
-                tag: '현대적'
+                tag: '현대적',
+                features: ['블러 효과', '스케일 전환', '매끄러운 움직임', '현대적 표현'],
+                demoClass: 'demo-modern'
             },
             {
                 code: 'C10',
@@ -966,7 +1393,9 @@
                 subtitle: 'Retro Bounce',
                 description: '통통 튀는 복고풍 애니메이션. 오버슈팅 효과로 "재미있고 향수적으로" 표현합니다.',
                 speed: '0.4초',
-                tag: '향수'
+                tag: '향수',
+                features: ['바운스 효과', '오버슈팅', '레트로 느낌', '향수적 표현'],
+                demoClass: 'demo-retro'
             }
         ];
 
@@ -1063,6 +1492,16 @@
                     `;
                 }
                 
+                // Add preview for layout and interaction
+                let previewButton = '';
+                if (type === 'layout' || type === 'interaction') {
+                    previewButton = `
+                        <button class="preview-button" onclick="event.stopPropagation(); openPreview('${type}', '${option.code}')">
+                            👁️ 미리보기
+                        </button>
+                    `;
+                }
+                
                 return `
                     <div class="option-card" onclick="selectOption('${type}', '${option.code}')">
                         <span class="option-code">${option.code}</span>
@@ -1071,6 +1510,7 @@
                         <div class="option-description">${option.description}</div>
                         ${extraContent}
                         <span class="option-tag">${option.tag}</span>
+                        ${previewButton}
                     </div>
                 `;
             }).join('');
@@ -1213,6 +1653,172 @@ ${selectedInteraction.description}
                 alert('복사에 실패했습니다. 다시 시도해주세요.');
                 console.error('Copy failed:', err);
             });
+        }
+
+        // Open preview modal
+        function openPreview(type, code) {
+            const modal = document.getElementById('preview-modal');
+            let option;
+            
+            if (type === 'layout') {
+                option = layoutOptions.find(o => o.code === code);
+            } else if (type === 'interaction') {
+                option = interactionOptions.find(o => o.code === code);
+            }
+            
+            if (!option) return;
+            
+            // Set modal content
+            document.getElementById('modal-title').textContent = option.title;
+            document.getElementById('modal-subtitle').textContent = option.subtitle;
+            document.getElementById('modal-description').textContent = option.description;
+            
+            // Set preview area
+            const previewArea = document.getElementById('modal-preview');
+            if (type === 'layout') {
+                previewArea.innerHTML = generateWireframe(option.wireframe);
+            } else if (type === 'interaction') {
+                previewArea.innerHTML = `
+                    <div class="interaction-demo ${option.demoClass}" style="width: 100px; height: 100px; background: var(--primary); border-radius: 12px;"></div>
+                `;
+            }
+            
+            // Set features
+            const featuresArea = document.getElementById('modal-features');
+            featuresArea.innerHTML = `
+                <h4>✨ 주요 특징</h4>
+                <ul>
+                    ${option.features.map(feature => `<li>${feature}</li>`).join('')}
+                </ul>
+            `;
+            
+            // Show modal
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Close modal
+        function closeModal() {
+            const modal = document.getElementById('preview-modal');
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close modal when clicking outside
+        document.addEventListener('click', (e) => {
+            const modal = document.getElementById('preview-modal');
+            if (e.target === modal) {
+                closeModal();
+            }
+        });
+
+        // Generate wireframe SVG
+        function generateWireframe(type) {
+            const svgs = {
+                classic: `
+                    <svg class="wireframe" viewBox="0 0 300 400" xmlns="http://www.w3.org/2000/svg">
+                        <rect class="fill" x="20" y="20" width="260" height="60" rx="4"/>
+                        <rect class="fill" x="20" y="100" width="260" height="80" rx="4"/>
+                        <rect class="fill" x="20" y="200" width="260" height="80" rx="4"/>
+                        <rect class="fill" x="20" y="300" width="260" height="80" rx="4"/>
+                    </svg>
+                `,
+                split: `
+                    <svg class="wireframe" viewBox="0 0 300 400" xmlns="http://www.w3.org/2000/svg">
+                        <rect class="highlight" x="20" y="20" width="120" height="360" rx="4"/>
+                        <rect class="fill" x="160" y="20" width="120" height="80" rx="4"/>
+                        <rect class="fill" x="160" y="120" width="120" height="80" rx="4"/>
+                        <rect class="fill" x="160" y="220" width="120" height="80" rx="4"/>
+                        <rect class="fill" x="160" y="320" width="120" height="60" rx="4"/>
+                    </svg>
+                `,
+                card: `
+                    <svg class="wireframe" viewBox="0 0 300 400" xmlns="http://www.w3.org/2000/svg">
+                        <rect class="fill" x="20" y="20" width="120" height="100" rx="8"/>
+                        <rect class="fill" x="160" y="20" width="120" height="100" rx="8"/>
+                        <rect class="fill" x="20" y="140" width="120" height="100" rx="8"/>
+                        <rect class="fill" x="160" y="140" width="120" height="100" rx="8"/>
+                        <rect class="fill" x="20" y="260" width="120" height="100" rx="8"/>
+                        <rect class="fill" x="160" y="260" width="120" height="100" rx="8"/>
+                    </svg>
+                `,
+                timeline: `
+                    <svg class="wireframe" viewBox="0 0 300 400" xmlns="http://www.w3.org/2000/svg">
+                        <line x1="150" y1="20" x2="150" y2="380" stroke="var(--primary)" stroke-width="3"/>
+                        <circle cx="150" cy="50" r="8" fill="var(--primary)"/>
+                        <rect class="fill" x="170" y="30" width="100" height="40" rx="4"/>
+                        <circle cx="150" cy="150" r="8" fill="var(--primary)"/>
+                        <rect class="fill" x="30" y="130" width="100" height="40" rx="4"/>
+                        <circle cx="150" cy="250" r="8" fill="var(--primary)"/>
+                        <rect class="fill" x="170" y="230" width="100" height="40" rx="4"/>
+                        <circle cx="150" cy="350" r="8" fill="var(--primary)"/>
+                        <rect class="fill" x="30" y="330" width="100" height="40" rx="4"/>
+                    </svg>
+                `,
+                magazine: `
+                    <svg class="wireframe" viewBox="0 0 300 400" xmlns="http://www.w3.org/2000/svg">
+                        <rect class="fill" x="20" y="20" width="180" height="140" rx="4"/>
+                        <rect class="fill" x="220" y="20" width="60" height="60" rx="4"/>
+                        <rect class="fill" x="220" y="100" width="60" height="60" rx="4"/>
+                        <rect class="fill" x="20" y="180" width="80" height="100" rx="4"/>
+                        <rect class="fill" x="120" y="180" width="160" height="60" rx="4"/>
+                        <rect class="fill" x="120" y="260" width="80" height="120" rx="4"/>
+                        <rect class="fill" x="220" y="260" width="60" height="120" rx="4"/>
+                    </svg>
+                `,
+                fullscreen: `
+                    <svg class="wireframe" viewBox="0 0 300 400" xmlns="http://www.w3.org/2000/svg">
+                        <rect class="highlight" x="20" y="20" width="260" height="360" rx="4"/>
+                        <text x="150" y="200" text-anchor="middle" fill="var(--primary)" font-size="20" font-weight="bold">Section 1</text>
+                        <circle cx="140" cy="370" r="4" fill="var(--primary)"/>
+                        <circle cx="150" cy="370" r="4" fill="var(--border)"/>
+                        <circle cx="160" cy="370" r="4" fill="var(--border)"/>
+                    </svg>
+                `,
+                sidebar: `
+                    <svg class="wireframe" viewBox="0 0 300 400" xmlns="http://www.w3.org/2000/svg">
+                        <rect class="highlight" x="20" y="20" width="80" height="360" rx="4"/>
+                        <rect class="fill" x="120" y="20" width="160" height="100" rx="4"/>
+                        <rect class="fill" x="120" y="140" width="160" height="100" rx="4"/>
+                        <rect class="fill" x="120" y="260" width="160" height="120" rx="4"/>
+                    </svg>
+                `,
+                asymmetric: `
+                    <svg class="wireframe" viewBox="0 0 300 400" xmlns="http://www.w3.org/2000/svg">
+                        <rect class="fill" x="20" y="20" width="180" height="100" rx="4"/>
+                        <rect class="fill" x="220" y="20" width="60" height="160" rx="4"/>
+                        <rect class="fill" x="20" y="140" width="120" height="140" rx="4"/>
+                        <rect class="fill" x="160" y="200" width="120" height="80" rx="4"/>
+                        <rect class="fill" x="20" y="300" width="180" height="80" rx="4"/>
+                    </svg>
+                `,
+                modular: `
+                    <svg class="wireframe" viewBox="0 0 300 400" xmlns="http://www.w3.org/2000/svg">
+                        <rect class="fill" x="20" y="20" width="80" height="80" rx="4"/>
+                        <rect class="fill" x="120" y="20" width="160" height="80" rx="4"/>
+                        <rect class="fill" x="20" y="120" width="120" height="120" rx="4"/>
+                        <rect class="fill" x="160" y="120" width="120" height="80" rx="4"/>
+                        <rect class="fill" x="160" y="220" width="120" height="60" rx="4"/>
+                        <rect class="fill" x="20" y="260" width="120" height="120" rx="4"/>
+                    </svg>
+                `,
+                gallery: `
+                    <svg class="wireframe" viewBox="0 0 300 400" xmlns="http://www.w3.org/2000/svg">
+                        <rect class="highlight" x="20" y="20" width="80" height="80" rx="4"/>
+                        <rect class="highlight" x="110" y="20" width="80" height="80" rx="4"/>
+                        <rect class="highlight" x="200" y="20" width="80" height="80" rx="4"/>
+                        <rect class="highlight" x="20" y="110" width="80" height="80" rx="4"/>
+                        <rect class="highlight" x="110" y="110" width="80" height="80" rx="4"/>
+                        <rect class="highlight" x="200" y="110" width="80" height="80" rx="4"/>
+                        <rect class="highlight" x="20" y="200" width="80" height="80" rx="4"/>
+                        <rect class="highlight" x="110" y="200" width="80" height="80" rx="4"/>
+                        <rect class="highlight" x="200" y="200" width="80" height="80" rx="4"/>
+                        <rect class="fill" x="20" y="300" width="260" height="80" rx="4"/>
+                    </svg>
+                `
+            };
+            
+            return svgs[type] || svgs.classic;
         }
 
         // Initialize on load
