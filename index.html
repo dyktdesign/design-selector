@@ -1,0 +1,1222 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎨 나만의 포트폴리오 디자인 선택</title>
+    
+    <!-- Google Font: Pretendard -->
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --bg: #ffffff;
+            --bg-secondary: #f8fafc;
+            --text: #1e293b;
+            --text-secondary: #64748b;
+            --border: #e2e8f0;
+            --success: #10b981;
+            --shadow: rgba(0, 0, 0, 0.1);
+        }
+
+        body {
+            font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            scroll-behavior: smooth;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        nav.scrolled {
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 4px 6px -1px var(--shadow);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-brand {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 0.5rem 0;
+            border-bottom: 2px solid transparent;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-links a.active {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+
+        /* Mobile Menu Toggle */
+        .mobile-menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 4px;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .mobile-menu-toggle span {
+            width: 24px;
+            height: 2px;
+            background: var(--text);
+            transition: all 0.3s ease;
+        }
+
+        .mobile-menu-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .mobile-menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .mobile-menu-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -6px);
+        }
+
+        /* Selection Summary Bar */
+        .selection-summary {
+            position: fixed;
+            top: 65px;
+            left: 0;
+            right: 0;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            padding: 1rem 2rem;
+            z-index: 999;
+            transform: translateY(-100%);
+            transition: transform 0.3s ease;
+        }
+
+        .selection-summary.active {
+            transform: translateY(0);
+        }
+
+        .summary-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .summary-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .summary-label {
+            opacity: 0.9;
+        }
+
+        .summary-value {
+            font-weight: 600;
+            padding: 0.25rem 0.75rem;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 6rem 2rem 4rem;
+            background: linear-gradient(135deg, #f8fafc 0%, #e0e7ff 100%);
+        }
+
+        .hero-content {
+            max-width: 800px;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+        }
+
+        .hero-steps {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            margin-top: 3rem;
+        }
+
+        .step {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .step-number {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: var(--primary);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: var(--primary);
+            color: white;
+            text-decoration: none;
+            border-radius: 12px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin-top: 2rem;
+        }
+
+        .cta-button:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(99, 102, 241, 0.3);
+        }
+
+        /* Section */
+        section {
+            padding: 6rem 2rem;
+            scroll-margin-top: 140px;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .section-header p {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+        }
+
+        /* Option Cards */
+        .options-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .option-card {
+            background: white;
+            border: 2px solid var(--border);
+            border-radius: 16px;
+            padding: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .option-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-4px);
+            box-shadow: 0 10px 25px var(--shadow);
+        }
+
+        .option-card.selected {
+            border-color: var(--primary);
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.05) 0%, rgba(79, 70, 229, 0.05) 100%);
+        }
+
+        .option-card.selected::before {
+            content: '✓';
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            width: 28px;
+            height: 28px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+        }
+
+        .option-code {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            background: var(--primary);
+            color: white;
+            border-radius: 6px;
+            font-weight: 700;
+            font-size: 0.875rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .option-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .option-subtitle {
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+            margin-bottom: 1rem;
+        }
+
+        .option-description {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .option-description ul {
+            list-style: none;
+            margin-top: 0.5rem;
+        }
+
+        .option-description li {
+            padding-left: 1.5rem;
+            position: relative;
+            margin-bottom: 0.25rem;
+        }
+
+        .option-description li::before {
+            content: '•';
+            position: absolute;
+            left: 0.5rem;
+            color: var(--primary);
+        }
+
+        .option-tag {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            background: var(--bg-secondary);
+            color: var(--text-secondary);
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-top: 0.75rem;
+        }
+
+        .color-preview {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .color-swatch {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            border: 2px solid var(--border);
+        }
+
+        /* Prompt Section */
+        #prompt-section {
+            background: var(--bg-secondary);
+        }
+
+        .prompt-box {
+            background: white;
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 4px 6px -1px var(--shadow);
+        }
+
+        .prompt-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--border);
+        }
+
+        .prompt-header h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .copy-button {
+            padding: 0.75rem 1.5rem;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Pretendard', sans-serif;
+        }
+
+        .copy-button:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        .copy-button.copied {
+            background: var(--success);
+        }
+
+        .prompt-content {
+            background: var(--bg-secondary);
+            padding: 2rem;
+            border-radius: 12px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            line-height: 1.8;
+            white-space: pre-wrap;
+            max-height: 600px;
+            overflow-y: auto;
+        }
+
+        .prompt-placeholder {
+            text-align: center;
+            color: var(--text-secondary);
+            padding: 4rem 2rem;
+        }
+
+        .prompt-placeholder p {
+            font-size: 1.125rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Info Alert */
+        .info-alert {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(79, 70, 229, 0.1) 100%);
+            border-left: 4px solid var(--primary);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+        }
+
+        .info-alert p {
+            color: var(--text);
+            font-size: 0.95rem;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--text);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        footer p {
+            opacity: 0.8;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in-up {
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-steps {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .mobile-menu-toggle {
+                display: flex;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 65px;
+                left: 0;
+                right: 0;
+                background: rgba(255, 255, 255, 0.98);
+                backdrop-filter: blur(20px);
+                flex-direction: column;
+                gap: 0;
+                padding: 1rem 0;
+                box-shadow: 0 4px 6px -1px var(--shadow);
+                transform: translateY(-100%);
+                opacity: 0;
+                transition: all 0.3s ease;
+                pointer-events: none;
+            }
+
+            .nav-links.active {
+                transform: translateY(0);
+                opacity: 1;
+                pointer-events: all;
+            }
+
+            .nav-links li {
+                border-bottom: 1px solid var(--border);
+            }
+
+            .nav-links li:last-child {
+                border-bottom: none;
+            }
+
+            .nav-links a {
+                display: block;
+                padding: 1rem 2rem;
+                border-bottom: none;
+            }
+
+            .nav-links a.active {
+                background: rgba(99, 102, 241, 0.1);
+                border-left: 3px solid var(--primary);
+            }
+
+            .options-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-header h2 {
+                font-size: 2rem;
+            }
+
+            .summary-content {
+                gap: 1rem;
+            }
+
+            .prompt-content {
+                font-size: 0.8rem;
+            }
+        }
+
+        /* Scrollbar */
+        .prompt-content::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .prompt-content::-webkit-scrollbar-track {
+            background: var(--border);
+            border-radius: 4px;
+        }
+
+        .prompt-content::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">🎨 포트폴리오 디자인 선택</div>
+            <ul class="nav-links" id="nav-links">
+                <li><a href="#home" class="nav-link active">홈</a></li>
+                <li><a href="#layout" class="nav-link">레이아웃</a></li>
+                <li><a href="#color" class="nav-link">색상</a></li>
+                <li><a href="#interaction" class="nav-link">인터랙션</a></li>
+                <li><a href="#prompt-section" class="nav-link">프롬프트</a></li>
+            </ul>
+            <div class="mobile-menu-toggle" id="mobile-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Selection Summary -->
+    <div class="selection-summary" id="summary-bar">
+        <div class="summary-content">
+            <div class="summary-item">
+                <span class="summary-label">레이아웃:</span>
+                <span class="summary-value" id="summary-layout">미선택</span>
+            </div>
+            <div class="summary-item">
+                <span class="summary-label">색상:</span>
+                <span class="summary-value" id="summary-color">미선택</span>
+            </div>
+            <div class="summary-item">
+                <span class="summary-label">인터랙션:</span>
+                <span class="summary-value" id="summary-interaction">미선택</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content fade-in-up">
+            <h1>🎨 나만의 포트폴리오 디자인</h1>
+            <p>3가지 선택으로 당신만의 독특한 포트폴리오를 만들어보세요</p>
+            
+            <div class="hero-steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <span>레이아웃 선택</span>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <span>색상 선택</span>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <span>인터랙션 선택</span>
+                </div>
+            </div>
+
+            <a href="#layout" class="cta-button">시작하기 →</a>
+        </div>
+    </section>
+
+    <!-- Layout Section -->
+    <section id="layout">
+        <div class="container">
+            <div class="section-header">
+                <h2>🏗️ A. 레이아웃 스타일</h2>
+                <p>전체적인 페이지 구조와 섹션 배치 방식을 선택하세요</p>
+            </div>
+
+            <div class="info-alert">
+                <p><strong>💡 선택 가이드:</strong> 포트폴리오의 전체적인 구조를 결정합니다. 깔끔한 느낌을 원하면 클래식 스크롤, 비주얼을 강조하고 싶으면 분할 스크린을 추천합니다.</p>
+            </div>
+
+            <div class="options-grid" id="layout-options"></div>
+        </div>
+    </section>
+
+    <!-- Color Section -->
+    <section id="color">
+        <div class="container">
+            <div class="section-header">
+                <h2>🎨 B. 색상 & 분위기</h2>
+                <p>전체적인 색상 팔레트와 느낌을 선택하세요</p>
+            </div>
+
+            <div class="info-alert">
+                <p><strong>💡 선택 가이드:</strong> 포트폴리오의 첫인상을 결정합니다. 전문적인 느낌은 미니멀 모노톤, 창의적인 느낌은 비비드 컬러풀을 추천합니다.</p>
+            </div>
+
+            <div class="options-grid" id="color-options"></div>
+        </div>
+    </section>
+
+    <!-- Interaction Section -->
+    <section id="interaction">
+        <div class="container">
+            <div class="section-header">
+                <h2>✨ C. 인터랙션 스타일</h2>
+                <p>사용자와의 상호작용 방식과 애니메이션 스타일을 선택하세요</p>
+            </div>
+
+            <div class="info-alert">
+                <p><strong>💡 선택 가이드:</strong> 포트폴리오에 생동감을 더합니다. 절제된 느낌은 미니멀 서틀, 에너지 넘치는 느낌은 역동적 다이나믹을 추천합니다.</p>
+            </div>
+
+            <div class="options-grid" id="interaction-options"></div>
+        </div>
+    </section>
+
+    <!-- Prompt Section -->
+    <section id="prompt-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>📝 생성된 프롬프트</h2>
+                <p>선택한 옵션으로 자동 생성된 프롬프트를 복사하여 사용하세요</p>
+            </div>
+
+            <div class="prompt-box">
+                <div class="prompt-header">
+                    <h3>🎯 최종 프롬프트</h3>
+                    <button class="copy-button" id="copy-btn" onclick="copyPrompt()">
+                        📋 복사하기
+                    </button>
+                </div>
+                <div class="prompt-content" id="prompt-content">
+                    <div class="prompt-placeholder">
+                        <p>👆 위에서 레이아웃, 색상, 인터랙션을 선택하면</p>
+                        <p>여기에 프롬프트가 자동으로 생성됩니다!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>Made with ❤️ for Creative Portfolio Builders</p>
+        <p style="margin-top: 0.5rem; font-size: 0.9rem;">© 2025 Portfolio Design Selector</p>
+    </footer>
+
+    <script>
+        // Data
+        const layoutOptions = [
+            {
+                code: 'A1',
+                title: '클래식 스크롤',
+                subtitle: 'Traditional Scroll',
+                description: '상하로 자연스럽게 흐르는 전통적 레이아웃. 섹션이 순차적으로 배치되며 초보자에게 가장 안전한 선택입니다.',
+                tag: '깔끔하고 정돈된'
+            },
+            {
+                code: 'A2',
+                title: '분할 스크린',
+                subtitle: 'Split Screen',
+                description: '화면을 좌우로 나눈 레이아웃. 왼쪽은 고정된 소개/네비게이션, 오른쪽은 스크롤 가능한 콘텐츠.',
+                tag: '비주얼 강조'
+            },
+            {
+                code: 'A3',
+                title: '카드 그리드',
+                subtitle: 'Card Grid',
+                description: '모든 섹션을 카드 형태로 배치. 깔끔하고 모듈화된 느낌으로 정보를 구획화하여 전달합니다.',
+                tag: '정보가 많은 경우'
+            },
+            {
+                code: 'A4',
+                title: '타임라인',
+                subtitle: 'Timeline',
+                description: '시간 순서로 흐르는 스토리텔링 레이아웃. 경력/프로젝트를 시간순으로 표현하며 좌우로 번갈아 배치합니다.',
+                tag: '성장 과정 강조'
+            },
+            {
+                code: 'A5',
+                title: '매거진',
+                subtitle: 'Magazine',
+                description: '잡지처럼 비대칭적 그리드. 이미지와 텍스트가 자유롭게 배치되는 창의적이고 독특한 레이아웃입니다.',
+                tag: '크리에이티브'
+            },
+            {
+                code: 'A6',
+                title: '풀스크린 슬라이드',
+                subtitle: 'Fullscreen Slides',
+                description: '각 섹션이 화면 전체를 차지. 스크롤시 섹션이 넘어가는 효과로 임팩트 있는 프레젠테이션 스타일입니다.',
+                tag: '강렬한 인상'
+            },
+            {
+                code: 'A7',
+                title: '사이드바 고정',
+                subtitle: 'Fixed Sidebar',
+                description: '왼쪽에 네비게이션 고정, 오른쪽에 콘텐츠 스크롤. 전문적이고 체계적인 느낌을 줍니다.',
+                tag: '많은 섹션'
+            },
+            {
+                code: 'A8',
+                title: '비대칭 레이아웃',
+                subtitle: 'Asymmetric',
+                description: '좌우가 불균형한 독특한 배치. 실험적이고 아방가르드한 느낌으로 시선을 끄는 레이아웃입니다.',
+                tag: '실험적 디자인'
+            },
+            {
+                code: 'A9',
+                title: '모듈러 블록',
+                subtitle: 'Modular Blocks',
+                description: '크기가 다른 블록들이 조합. 테트리스처럼 퍼즐 조각 같은 배치로 역동적이고 재미있는 구성입니다.',
+                tag: '플레이풀'
+            },
+            {
+                code: 'A10',
+                title: '갤러리 중심',
+                subtitle: 'Gallery First',
+                description: '프로젝트 이미지가 첫 화면을 채움. 포트폴리오가 중심이며 비주얼이 강조된 구성입니다.',
+                tag: '작품 우선'
+            }
+        ];
+
+        const colorOptions = [
+            {
+                code: 'B1',
+                title: '미니멀 모노톤',
+                subtitle: 'Minimal Monochrome',
+                description: '깔끔하고 절제된 프로페셔널한 느낌. 타이포그래피와 여백을 강조합니다.',
+                colors: ['#FFFFFF', '#F3F4F6', '#1F2937'],
+                tag: '프로페셔널'
+            },
+            {
+                code: 'B2',
+                title: '비비드 컬러풀',
+                subtitle: 'Vivid Colorful',
+                description: '밝고 선명한 다양한 색상. 에너제틱하고 젊은 역동적인 느낌을 줍니다.',
+                colors: ['#FF6B6B', '#4ECDC4', '#FFE66D', '#A8E6CF'],
+                tag: '에너제틱'
+            },
+            {
+                code: 'B3',
+                title: '파스텔 소프트',
+                subtitle: 'Pastel Soft',
+                description: '부드러운 파스텔 톤. 온화하고 친근하며 편안한 느낌을 줍니다.',
+                colors: ['#FFD6E8', '#C5E3F6', '#E7C6FF', '#B5F8FE'],
+                tag: '온화함'
+            },
+            {
+                code: 'B4',
+                title: '다크모드 엘레강트',
+                subtitle: 'Dark Elegant',
+                description: '어두운 배경에 밝은 강조. 고급스럽고 신비로우며 현대적인 느낌입니다.',
+                colors: ['#0F172A', '#1E293B', '#818CF8', '#C084FC'],
+                tag: '고급스러움'
+            },
+            {
+                code: 'B5',
+                title: '그라디언트 모던',
+                subtitle: 'Gradient Modern',
+                description: '부드러운 그라디언트 조합. 모던하고 트렌디하며 역동적인 느낌을 줍니다.',
+                colors: ['#667eea', '#764ba2', '#f093fb', '#f5576c'],
+                tag: '모던'
+            },
+            {
+                code: 'B6',
+                title: '네온 사이버펑크',
+                subtitle: 'Neon Cyberpunk',
+                description: '어두운 배경에 네온 핑크/청록. 미래적이고 테크하며 강렬한 느낌입니다.',
+                colors: ['#0a0e27', '#ff006e', '#00f5ff', '#8338ec'],
+                tag: '미래적'
+            },
+            {
+                code: 'B7',
+                title: '자연 어스톤',
+                subtitle: 'Nature Earthtone',
+                description: '자연스러운 흙, 나무, 식물 색. 유기적이고 친환경적이며 안정감을 줍니다.',
+                colors: ['#8B7355', '#C5B8A5', '#6B8E23', '#D4A574'],
+                tag: '유기적'
+            },
+            {
+                code: 'B8',
+                title: '프로페셔널 블루',
+                subtitle: 'Professional Blue',
+                description: '다양한 톤의 파란색. 신뢰감 있고 전문적이며 차분한 느낌을 줍니다.',
+                colors: ['#1E40AF', '#3B82F6', '#60A5FA', '#DBEAFE'],
+                tag: '신뢰감'
+            },
+            {
+                code: 'B9',
+                title: '창의적 레인보우',
+                subtitle: 'Creative Rainbow',
+                description: '무지개 스펙트럼 활용. 창의적이고 자유로우며 다양성을 표현합니다.',
+                colors: ['#FF0000', '#FF7F00', '#FFFF00', '#00FF00', '#0000FF', '#8B00FF'],
+                tag: '창의적'
+            },
+            {
+                code: 'B10',
+                title: '클래식 흑백',
+                subtitle: 'Classic B&W',
+                description: '검은색과 흰색만 사용. 시대를 초월하고 정통적이며 강렬한 느낌입니다.',
+                colors: ['#000000', '#FFFFFF'],
+                tag: '시대 초월'
+            }
+        ];
+
+        const interactionOptions = [
+            {
+                code: 'C1',
+                title: '미니멀 서틀',
+                subtitle: 'Minimal Subtle',
+                description: '매우 절제된 애니메이션. 미묘한 호버 효과로 "말없이 우아하게" 표현합니다.',
+                speed: '0.5초',
+                tag: '우아함'
+            },
+            {
+                code: 'C2',
+                title: '역동적 다이나믹',
+                subtitle: 'Dynamic',
+                description: '활발한 움직임과 전환. 확대/축소, 회전 효과로 "에너지 넘치게" 표현합니다.',
+                speed: '0.2초',
+                tag: '에너지'
+            },
+            {
+                code: 'C3',
+                title: '플레이풀',
+                subtitle: 'Playful',
+                description: '귀엽고 재미있는 애니메이션. 통통 튀고 흔들리는 효과로 "즐겁고 친근하게" 표현합니다.',
+                speed: '0.3초',
+                tag: '재미'
+            },
+            {
+                code: 'C4',
+                title: '엘레강트 플로우',
+                subtitle: 'Elegant Flow',
+                description: '부드럽게 흐르는 듯한 움직임. 페이드, 슬라이드 효과로 "우아하고 세련되게" 표현합니다.',
+                speed: '0.6초',
+                tag: '세련됨'
+            },
+            {
+                code: 'C5',
+                title: '테크니컬 글리치',
+                subtitle: 'Technical Glitch',
+                description: '깜빡임, 글리치 효과. 테크니컬한 전환으로 "미래적이고 기술적으로" 표현합니다.',
+                speed: '0.1초',
+                tag: '기술적'
+            },
+            {
+                code: 'C6',
+                title: '오가닉 내츄럴',
+                subtitle: 'Organic Natural',
+                description: '자연스러운 이징 곡선. 물결, 파동 효과로 "자연스럽고 부드럽게" 표현합니다.',
+                speed: '0.4초',
+                tag: '자연스러움'
+            },
+            {
+                code: 'C7',
+                title: '볼드 임팩트',
+                subtitle: 'Bold Impact',
+                description: '강렬한 시각적 효과. 크게 확대, 강한 그림자로 "대담하고 강렬하게" 표현합니다.',
+                speed: '0.25초',
+                tag: '강렬함'
+            },
+            {
+                code: 'C8',
+                title: '섬세한 디테일',
+                subtitle: 'Delicate Detail',
+                description: '세밀한 마이크로 인터랙션. 작은 요소들의 반응으로 "정교하고 섬세하게" 표현합니다.',
+                speed: '0.35초',
+                tag: '섬세함'
+            },
+            {
+                code: 'C9',
+                title: '모던 슬릭',
+                subtitle: 'Modern Sleek',
+                description: '매끄럽고 현대적인 전환. 블러, 스케일 효과로 "세련되고 현대적으로" 표현합니다.',
+                speed: '0.3초',
+                tag: '현대적'
+            },
+            {
+                code: 'C10',
+                title: '레트로 바운스',
+                subtitle: 'Retro Bounce',
+                description: '통통 튀는 복고풍 애니메이션. 오버슈팅 효과로 "재미있고 향수적으로" 표현합니다.',
+                speed: '0.4초',
+                tag: '향수'
+            }
+        ];
+
+        // State
+        let selectedLayout = null;
+        let selectedColor = null;
+        let selectedInteraction = null;
+
+        // Initialize
+        function init() {
+            renderOptions('layout-options', layoutOptions, 'layout');
+            renderOptions('color-options', colorOptions, 'color');
+            renderOptions('interaction-options', interactionOptions, 'interaction');
+            
+            // Scroll event for navbar
+            window.addEventListener('scroll', () => {
+                const navbar = document.getElementById('navbar');
+                if (window.scrollY > 50) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+                
+                // Scroll spy for navigation
+                updateActiveNav();
+            });
+            
+            // Mobile menu toggle
+            const mobileToggle = document.getElementById('mobile-toggle');
+            const navLinks = document.getElementById('nav-links');
+            
+            mobileToggle.addEventListener('click', () => {
+                mobileToggle.classList.toggle('active');
+                navLinks.classList.toggle('active');
+            });
+            
+            // Close mobile menu when clicking a link
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileToggle.classList.remove('active');
+                    navLinks.classList.remove('active');
+                });
+            });
+        }
+        
+        // Update active navigation based on scroll position
+        function updateActiveNav() {
+            const sections = ['home', 'layout', 'color', 'interaction', 'prompt-section'];
+            const navLinks = document.querySelectorAll('.nav-link');
+            
+            let currentSection = '';
+            
+            sections.forEach(sectionId => {
+                const section = document.getElementById(sectionId);
+                if (section) {
+                    const rect = section.getBoundingClientRect();
+                    // Check if section is in viewport (with some offset for better UX)
+                    if (rect.top <= 200 && rect.bottom >= 200) {
+                        currentSection = sectionId;
+                    }
+                }
+            });
+            
+            // Update active state
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${currentSection}`) {
+                    link.classList.add('active');
+                }
+            });
+        }
+
+        // Render options
+        function renderOptions(containerId, options, type) {
+            const container = document.getElementById(containerId);
+            container.innerHTML = options.map(option => {
+                let extraContent = '';
+                
+                if (type === 'color' && option.colors) {
+                    extraContent = `
+                        <div class="color-preview">
+                            ${option.colors.map(color => 
+                                `<div class="color-swatch" style="background-color: ${color}"></div>`
+                            ).join('')}
+                        </div>
+                    `;
+                }
+                
+                if (type === 'interaction' && option.speed) {
+                    extraContent = `
+                        <div class="option-description" style="margin-top: 0.5rem;">
+                            <strong>속도:</strong> ${option.speed}
+                        </div>
+                    `;
+                }
+                
+                return `
+                    <div class="option-card" onclick="selectOption('${type}', '${option.code}')">
+                        <span class="option-code">${option.code}</span>
+                        <div class="option-title">${option.title}</div>
+                        <div class="option-subtitle">${option.subtitle}</div>
+                        <div class="option-description">${option.description}</div>
+                        ${extraContent}
+                        <span class="option-tag">${option.tag}</span>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // Select option
+        function selectOption(type, code) {
+            // Update state
+            if (type === 'layout') {
+                selectedLayout = layoutOptions.find(o => o.code === code);
+                // Remove previous selection
+                document.querySelectorAll('#layout-options .option-card').forEach(card => {
+                    card.classList.remove('selected');
+                });
+            } else if (type === 'color') {
+                selectedColor = colorOptions.find(o => o.code === code);
+                document.querySelectorAll('#color-options .option-card').forEach(card => {
+                    card.classList.remove('selected');
+                });
+            } else if (type === 'interaction') {
+                selectedInteraction = interactionOptions.find(o => o.code === code);
+                document.querySelectorAll('#interaction-options .option-card').forEach(card => {
+                    card.classList.remove('selected');
+                });
+            }
+            
+            // Add selection to clicked card
+            event.currentTarget.classList.add('selected');
+            
+            // Update summary
+            updateSummary();
+            
+            // Generate prompt
+            generatePrompt();
+        }
+
+        // Update summary bar
+        function updateSummary() {
+            const summaryBar = document.getElementById('summary-bar');
+            const layoutEl = document.getElementById('summary-layout');
+            const colorEl = document.getElementById('summary-color');
+            const interactionEl = document.getElementById('summary-interaction');
+            
+            layoutEl.textContent = selectedLayout ? selectedLayout.code : '미선택';
+            colorEl.textContent = selectedColor ? selectedColor.code : '미선택';
+            interactionEl.textContent = selectedInteraction ? selectedInteraction.code : '미선택';
+            
+            // Show summary bar if any selection made
+            if (selectedLayout || selectedColor || selectedInteraction) {
+                summaryBar.classList.add('active');
+            }
+        }
+
+        // Generate prompt
+        function generatePrompt() {
+            const promptContent = document.getElementById('prompt-content');
+            
+            if (!selectedLayout || !selectedColor || !selectedInteraction) {
+                promptContent.innerHTML = `
+                    <div class="prompt-placeholder">
+                        <p>👆 위에서 레이아웃, 색상, 인터랙션을 선택하면</p>
+                        <p>여기에 프롬프트가 자동으로 생성됩니다!</p>
+                        ${selectedLayout || selectedColor || selectedInteraction ? 
+                            '<p style="margin-top: 1rem; color: var(--primary);">좋아요! 나머지 옵션도 선택해주세요 ✨</p>' : ''}
+                    </div>
+                `;
+                return;
+            }
+            
+            const colorCodes = selectedColor.colors.join(', ');
+            
+            const prompt = `포트폴리오 웹사이트를 만들어주세요.
+
+📋 기본 정보:
+- 이름: [여기에 본인 이름을 입력하세요]
+- 직업: [여기에 본인 직업을 입력하세요]
+- 한 줄 소개: [여기에 본인 소개를 입력하세요]
+
+🏗️ 레이아웃 스타일: ${selectedLayout.title} (${selectedLayout.subtitle})
+${selectedLayout.description}
+
+🎨 색상 & 분위기: ${selectedColor.title} (${selectedColor.subtitle})
+${selectedColor.description}
+- 메인 색상 코드: ${colorCodes}
+- 색상을 적절히 배경, 텍스트, 강조색으로 활용
+
+✨ 인터랙션 스타일: ${selectedInteraction.title} (${selectedInteraction.subtitle})
+${selectedInteraction.description}
+- 애니메이션 속도: ${selectedInteraction.speed}
+
+📦 포함할 섹션:
+- Hero (이름, 직업, 간단한 소개, CTA 버튼)
+- About (자기소개, 경력 요약)
+- Skills (보유 기술 목록)
+- Projects (프로젝트 4개 - 각각 제목, 설명, 이미지 영역, 사용 기술)
+- Contact (이메일, GitHub, LinkedIn 등 연락처)
+
+📱 기술 요구사항:
+- HTML, CSS, JavaScript를 하나의 index.html 파일로 작성
+- 구글 폰트 Pretendard 사용
+- 완전한 모바일 반응형 디자인
+- 부드러운 스크롤 애니메이션
+- 최신 웹 표준 준수
+
+🎯 디자인 방향:
+위에서 선택한 레이아웃 스타일(${selectedLayout.code}), 색상 분위기(${selectedColor.code}), 인터랙션 스타일(${selectedInteraction.code})을 정확히 반영하여 독창적이고 개성있는 포트폴리오를 만들어주세요. 각 스타일의 특징을 잘 살려서 구현해주세요.`;
+            
+            promptContent.textContent = prompt;
+            
+            // Smooth scroll to prompt section
+            setTimeout(() => {
+                document.getElementById('prompt-section').scrollIntoView({ 
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }, 300);
+        }
+
+        // Copy prompt
+        function copyPrompt() {
+            const promptContent = document.getElementById('prompt-content');
+            const copyBtn = document.getElementById('copy-btn');
+            
+            if (!selectedLayout || !selectedColor || !selectedInteraction) {
+                alert('먼저 레이아웃, 색상, 인터랙션을 모두 선택해주세요!');
+                return;
+            }
+            
+            const text = promptContent.textContent;
+            
+            navigator.clipboard.writeText(text).then(() => {
+                copyBtn.textContent = '✅ 복사완료!';
+                copyBtn.classList.add('copied');
+                
+                setTimeout(() => {
+                    copyBtn.textContent = '📋 복사하기';
+                    copyBtn.classList.remove('copied');
+                }, 2000);
+            }).catch(err => {
+                alert('복사에 실패했습니다. 다시 시도해주세요.');
+                console.error('Copy failed:', err);
+            });
+        }
+
+        // Initialize on load
+        document.addEventListener('DOMContentLoaded', init);
+    </script>
+</body>
+</html>
